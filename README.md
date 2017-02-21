@@ -6,7 +6,7 @@ framework authors to use when implementing these communication algorithms
 within their respective frameworks.
 
 A description of the ring allreduce with its application to deep learning is
-available on the [Baidu SVAIL blog](http://blog).
+available on the [Baidu SVAIL blog](http://research.baidu.com/bringing-hpc-techniques-deep-learning/).
 
 ## Installation
 
