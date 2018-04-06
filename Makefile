@@ -3,6 +3,11 @@ ifeq ("$(wildcard $(MPI_ROOT))","")
 $(error Could not find MPI in "$(MPI_ROOT)")
 endif
 
+# If MPI_INCLUDE_ROOT has not been set, set it to MPI_ROOT
+ifeq ("$(wildcard $(MPI_INCLUDE_ROOT))","")
+MPI_INCLUDE_ROOT:=$(MPI_ROOT)
+endif
+
 # Check that CUDA path exists.
 ifeq ("$(wildcard $(CUDA_ROOT))","")
 $(error Could not find CUDA in "$(CUDA_ROOT)")
@@ -11,7 +16,7 @@ endif
 CC:=mpic++
 NVCC:=nvcc
 LDFLAGS:=-L$(CUDA_ROOT)/lib64 -L$(MPI_ROOT)/lib -lcudart -lmpi -DOMPI_SKIP_MPICXX=
-CFLAGS:=-std=c++11 -I$(MPI_ROOT)/include -I. -I$(CUDA_ROOT)/include -DOMPI_SKIP_MPICXX=
+CFLAGS:=-std=c++11 -I$(MPI_INCLUDE_ROOT) -I$(MPI_ROOT)/include -I. -I$(CUDA_ROOT)/include -DOMPI_SKIP_MPICXX=
 EXE_NAME:=allreduce-test
 SRC:=$(wildcard *.cpp test/*.cpp)
 CU_SRC:=$(wildcard *.cu)
