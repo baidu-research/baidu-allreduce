@@ -24,6 +24,11 @@ To compile `baidu-allreduce`, run
 # Modify CUDA_ROOT to point to your installation of CUDA.
 make MPI_ROOT=/usr/lib/openmpi CUDA_ROOT=/path/to/cuda/lib64
 ```
+For distributions that split their MPI headers and libraries (e.g. RHEL, Fedora, CentOS) into separate directories you should also specify the path to the include files:
+
+```
+MPI_INCLUDE_ROOT=<mpi_include_root>
+```
 
 You may need to modify your `LD_LIBRARY_PATH` environment variable to point to
 your MPI implementation as well as your CUDA libraries.
